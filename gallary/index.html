@@ -1,0 +1,1335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Special 💗</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,180,210,.35),transparent 30%),
+        radial-gradient(circle at 80% 80%,rgba(190,170,255,.3),transparent 30%),
+        linear-gradient(135deg,#fff0f6,#f9edff,#eaf5ff);
+    color:#4d3b48;
+    overflow-x:hidden;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+.bg-heart{
+    position:fixed;
+    pointer-events:none;
+    z-index:0;
+    opacity:.25;
+    animation:floatHeart linear infinite;
+}
+
+@keyframes floatHeart{
+    0%{
+        transform:translateY(110vh) rotate(0deg);
+        opacity:0;
+    }
+    15%{opacity:.35;}
+    100%{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.sparkle{
+    position:fixed;
+    width:5px;
+    height:5px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 15px white;
+    animation:sparkle 2s infinite alternate;
+    pointer-events:none;
+    z-index:1;
+}
+
+@keyframes sparkle{
+    from{transform:scale(.3);opacity:.2;}
+    to{transform:scale(1.8);opacity:1;}
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:30px 20px;
+    overflow:hidden;
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    max-width:850px;
+}
+
+.small-title{
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#b86a91;
+    margin-bottom:15px;
+    animation:fadeDown 1.2s ease;
+}
+
+h1{
+    font-family:'Pacifico',cursive;
+    font-size:clamp(48px,9vw,100px);
+    color:#c45a87;
+    text-shadow:
+        0 5px 20px rgba(196,90,135,.2);
+    animation:titleFloat 4s ease-in-out infinite;
+}
+
+@keyframes titleFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+.hero p{
+    margin:20px auto;
+    max-width:650px;
+    font-size:18px;
+    line-height:1.8;
+    color:#725b69;
+}
+
+.teddy{
+    font-size:110px;
+    display:inline-block;
+    animation:teddyBounce 2s ease-in-out infinite;
+    filter:drop-shadow(0 15px 20px rgba(120,80,80,.15));
+}
+
+@keyframes teddyBounce{
+    0%,100%{transform:translateY(0) rotate(-4deg);}
+    50%{transform:translateY(-15px) rotate(4deg);}
+}
+
+.scroll-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:15px 30px;
+    border-radius:50px;
+    background:rgba(255,255,255,.65);
+    border:1px solid rgba(255,255,255,.9);
+    color:#a74d77;
+    text-decoration:none;
+    font-weight:600;
+    box-shadow:0 10px 30px rgba(150,80,120,.15);
+    transition:.3s;
+    backdrop-filter:blur(10px);
+}
+
+.scroll-btn:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 15px 35px rgba(150,80,120,.25);
+}
+
+/* ---------- SECTIONS ---------- */
+
+section{
+    position:relative;
+    z-index:2;
+    padding:100px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-family:'Pacifico',cursive;
+    font-size:50px;
+    color:#b85a85;
+}
+
+.section-title p{
+    margin-top:10px;
+    color:#866f7c;
+}
+
+/* ---------- PHOTO GALLERY ---------- */
+
+.gallery{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+#photos{
+    opacity:0;
+    visibility:hidden;
+    max-height:0;
+    overflow:hidden;
+    padding-top:0;
+    padding-bottom:0;
+    transition:opacity .6s ease, max-height .8s ease, padding .6s ease, visibility .6s ease;
+}
+
+#photos.gallery-revealed{
+    opacity:1;
+    visibility:visible;
+    max-height:none;
+    overflow:visible;
+    padding-top:100px;
+    padding-bottom:100px;
+}
+
+#photos.gallery-revealed .gallery{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.photo-card{
+    height:380px;
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    background:white;
+    padding:8px;
+    box-shadow:0 20px 45px rgba(120,70,100,.15);
+    transform:translateY(50px);
+    opacity:0;
+    transition:1s ease;
+}
+
+.photo-card.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.photo-card:nth-child(2){
+    margin-top:40px;
+}
+
+.photo-card:nth-child(3){
+    margin-top:15px;
+}
+
+.photo-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:22px;
+    transition:.6s;
+}
+
+.photo-card:hover img{
+    transform:scale(1.08);
+}
+
+.photo-overlay{
+    position:absolute;
+    inset:8px;
+    border-radius:22px;
+    background:linear-gradient(transparent,rgba(60,30,50,.7));
+    display:flex;
+    align-items:flex-end;
+    padding:25px;
+    color:white;
+    opacity:0;
+    transition:.4s;
+}
+
+.photo-card:hover .photo-overlay{
+    opacity:1;
+}
+
+.photo-overlay span{
+    font-size:15px;
+}
+
+/* ---------- LOVE MESSAGE ---------- */
+
+.message-box{
+    max-width:850px;
+    margin:auto;
+    padding:55px 40px;
+    background:rgba(255,255,255,.58);
+    border:1px solid rgba(255,255,255,.8);
+    border-radius:35px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 25px 70px rgba(120,70,100,.15);
+    text-align:center;
+}
+
+.message-box .big-heart{
+    font-size:70px;
+    animation:heartbeat 1.4s infinite;
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1);}
+    15%{transform:scale(1.2);}
+    30%{transform:scale(1);}
+    45%{transform:scale(1.12);}
+}
+
+.typewriter{
+    margin-top:25px;
+    min-height:100px;
+    font-size:20px;
+    line-height:2;
+}
+
+/* ---------- LOVE LETTER ---------- */
+
+.letter-section{
+    min-height:800px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.envelope{
+    width:320px;
+    height:220px;
+    position:relative;
+    cursor:pointer;
+    transition:1s;
+}
+
+.envelope-body{
+    position:absolute;
+    inset:0;
+    background:#e88cad;
+    border-radius:10px;
+    box-shadow:0 25px 50px rgba(100,50,80,.2);
+}
+
+.envelope:before{
+    content:"";
+    position:absolute;
+    z-index:3;
+    top:0;
+    left:0;
+    border-left:160px solid transparent;
+    border-right:160px solid transparent;
+    border-top:120px solid #f3a5bf;
+    transform-origin:top;
+    transition:1s;
+}
+
+.envelope:after{
+    content:"💌";
+    position:absolute;
+    z-index:5;
+    top:80px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:55px;
+}
+
+.letter{
+    position:absolute;
+    z-index:2;
+    width:280px;
+    height:180px;
+    background:#fffafc;
+    left:20px;
+    top:20px;
+    border-radius:10px;
+    padding:25px;
+    text-align:center;
+    transition:1s;
+    box-shadow:0 10px 30px rgba(80,40,60,.15);
+}
+
+.letter h3{
+    font-family:'Pacifico',cursive;
+    color:#c45a87;
+    font-size:25px;
+}
+
+.letter p{
+    font-size:12px;
+    line-height:1.7;
+    margin-top:10px;
+}
+
+.envelope.open .letter{
+    transform:translateY(-180px);
+}
+
+.envelope.open:before{
+    transform:rotateX(180deg);
+    z-index:1;
+}
+
+.open-text{
+    margin-top:35px;
+    text-align:center;
+    color:#9c657e;
+}
+
+/* ---------- BUTTON ---------- */
+
+.surprise-btn{
+    border:0;
+    padding:17px 35px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#d96d98,#a96fd0);
+    color:white;
+    font-size:16px;
+    font-family:inherit;
+    cursor:pointer;
+    box-shadow:0 15px 30px rgba(150,80,140,.25);
+    transition:.3s;
+}
+
+.surprise-btn:hover{
+    transform:translateY(-4px) scale(1.05);
+}
+
+/* ---------- FULLSCREEN PHOTO ---------- */
+
+.photo-fullscreen{
+    position:fixed;
+    inset:0;
+    background:rgba(18,10,20,.85);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+    padding:30px;
+}
+
+.photo-fullscreen.show{
+    display:flex;
+}
+
+.photo-fullscreen-inner{
+    position:relative;
+    max-width:95vw;
+    max-height:95vh;
+    width:auto;
+    height:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.08);
+    border-radius:28px;
+    padding:18px;
+    box-shadow:0 35px 80px rgba(0,0,0,.35);
+}
+
+.photo-fullscreen-inner img{
+    max-width:95vw;
+    max-height:88vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    border-radius:20px;
+    display:block;
+}
+
+.photo-fullscreen-caption{
+    position:absolute;
+    left:30px;
+    right:30px;
+    bottom:18px;
+    text-align:center;
+    color:#fff;
+    font-size:14px;
+    background:rgba(0,0,0,.2);
+    border-radius:10px;
+    padding:8px 12px;
+}
+
+.fullscreen-back-btn{
+    position:absolute;
+    top:20px;
+    left:20px;
+    border:0;
+    background:rgba(255,255,255,.18);
+    color:white;
+    border-radius:50px;
+    padding:12px 18px;
+    font-size:14px;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+    z-index:5;
+}
+
+/* ---------- POPUP ---------- */
+
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(40,20,40,.45);
+    backdrop-filter:blur(8px);
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.popup.show{
+    display:flex;
+}
+
+.popup-card{
+    max-width:500px;
+    width:100%;
+    padding:50px 35px;
+    border-radius:35px;
+    background:linear-gradient(145deg,#fff,#fff0f7);
+    text-align:center;
+    animation:popup .6s cubic-bezier(.17,.67,.3,1.3);
+    box-shadow:0 30px 80px rgba(50,20,50,.3);
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.5) rotate(-5deg);
+        opacity:0;
+    }
+    to{
+        transform:scale(1) rotate(0);
+        opacity:1;
+    }
+}
+
+.popup-card .emoji{
+    font-size:80px;
+}
+
+.popup-card h2{
+    font-family:'Pacifico',cursive;
+    color:#c45a87;
+    font-size:38px;
+    margin:15px 0;
+}
+
+.popup-card p{
+    line-height:1.8;
+    color:#745e6c;
+}
+
+.close{
+    margin-top:25px;
+    padding:12px 25px;
+    border:0;
+    border-radius:30px;
+    background:#f2d5e2;
+    color:#92536f;
+    cursor:pointer;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+    padding:50px 20px;
+    text-align:center;
+    color:#987e8e;
+}
+
+footer span{
+    color:#d25d8d;
+}
+
+/* ---------- MUSIC BUTTON ---------- */
+
+.music-toggle{
+    position:fixed;
+    right:24px;
+    bottom:22px;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border:0;
+    padding:12px 18px;
+    border-radius:999px;
+    background:rgba(255,255,255,.7);
+    color:#9f4d73;
+    box-shadow:0 12px 30px rgba(120,70,100,.18);
+    backdrop-filter:blur(12px);
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+.music-toggle:hover{
+    transform:translateY(-3px) scale(1.02);
+}
+
+.music-toggle.playing{
+    background:linear-gradient(135deg,#ffd9ea,#f8d4ff);
+}
+
+.music-icon{
+    font-size:18px;
+    filter:drop-shadow(0 4px 8px rgba(180,90,140,.2));
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:800px){
+    .gallery{
+        grid-template-columns:repeat(3, minmax(0, 1fr));
+        max-width:100%;
+        gap:10px;
+    }
+
+    .photo-card{
+        height:120px;
+    }
+
+    .photo-card,
+    .photo-card:nth-child(2),
+    .photo-card:nth-child(3){
+        margin-top:0;
+    }
+
+    .message-box{
+        padding:40px 22px;
+    }
+
+    .envelope{
+        transform:scale(.85);
+    }
+}
+
+@media(max-width:450px){
+    h1{
+        font-size:55px;
+    }
+
+    .teddy{
+        font-size:85px;
+    }
+
+    .section-title h2{
+        font-size:40px;
+    }
+
+    .typewriter{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING BACKGROUND -->
+<div class="bg-heart" style="left:5%;font-size:25px;animation-duration:12s;">💗</div>
+<div class="bg-heart" style="left:15%;font-size:18px;animation-duration:16s;animation-delay:2s;">💕</div>
+<div class="bg-heart" style="left:28%;font-size:30px;animation-duration:14s;animation-delay:5s;">💖</div>
+<div class="bg-heart" style="left:45%;font-size:20px;animation-duration:18s;">💗</div>
+<div class="bg-heart" style="left:62%;font-size:35px;animation-duration:13s;animation-delay:3s;">💞</div>
+<div class="bg-heart" style="left:78%;font-size:24px;animation-duration:17s;">💘</div>
+<div class="bg-heart" style="left:90%;font-size:30px;animation-duration:15s;animation-delay:4s;">❤️</div>
+
+<div class="sparkle" style="top:15%;left:20%;"></div>
+<div class="sparkle" style="top:30%;left:80%;animation-delay:.5s;"></div>
+<div class="sparkle" style="top:65%;left:10%;animation-delay:1s;"></div>
+<div class="sparkle" style="top:75%;left:90%;animation-delay:1.5s;"></div>
+
+<button id="music-toggle" class="music-toggle" type="button" aria-label="Play background music">
+    <span class="music-icon">♫</span>
+    <span>Play music</span>
+</button>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">A little website for someone special ✨</div>
+
+        <div class="teddy">🧸</div>
+
+        <h1>For You 💗</h1>
+
+        <p>
+            Some people enter your life quietly...
+            and somehow make everything feel a little more beautiful. 🌷
+        </p>
+
+        <a href="#photos" class="scroll-btn">
+           Click me to open this little world 💌
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- PHOTOS -->
+<section id="photos">
+
+    <div class="section-title">
+        <h2>Little Moments 📸</h2>
+        <p>Because some pictures deserve their own little corner of the internet ✨</p>
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+
+</section>
+
+
+<!-- MESSAGE -->
+<section>
+
+    <div class="section-title">
+        <h2>A Little Something 💕</h2>
+    </div>
+
+    <div class="message-box">
+
+        <div class="big-heart">💗</div>
+
+        <div class="typewriter" id="typewriter"></div>
+
+        <br>
+
+        <button class="surprise-btn" onclick="showSurprise()">
+            There's a surprise for you 🎁
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- LETTER -->
+<section class="letter-section">
+
+    <div>
+
+        <div class="section-title">
+            <h2>One Tiny Letter 💌</h2>
+            <p>Click the envelope...</p>
+        </div>
+
+        <div class="envelope" id="envelope" onclick="openLetter()">
+
+            <div class="letter">
+
+                <h3>Hey You 💗</h3>
+
+                <p>
+                    I don't know exactly when it happened,
+                    but somewhere along the way,
+                    you became someone who makes ordinary
+                    moments feel special.
+                </p>
+
+                <p>
+                    Stay exactly the way you are. 🌷
+                </p>
+
+            </div>
+
+            <div class="envelope-body"></div>
+
+        </div>
+
+        <div class="open-text">
+            💕 Tap the envelope to open 💕
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="photo-fullscreen" id="photo-fullscreen">
+    <div class="photo-fullscreen-inner">
+        <button class="fullscreen-back-btn" onclick="closeFullscreenPhoto()">Back</button>
+        <img id="fullscreen-image" src="" alt="Full screen memory" />
+        <div class="photo-fullscreen-caption" id="fullscreen-caption"></div>
+    </div>
+</div>
+
+<footer>
+    Made with <span>❤️</span>, a little courage, and lots of feelings 🧸✨
+</footer>
+
+
+<!-- SURPRISE POPUP -->
+
+<div class="popup" id="popup">
+
+    <div class="popup-card">
+
+        <div class="emoji">🧸💗✨</div>
+
+        <h2>You Are Special</h2>
+
+        <p>
+            Maybe this is just a tiny webpage...
+            but behind it is a very real thought:
+            <br><br>
+            <b>I'm really glad you exist. 🌷</b>
+        </p>
+
+        <br>
+
+        <button class="close" onclick="closeSurprise()">
+            Aww 🥹💗
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   YOUR PHOTOS
+   ==========================================
+
+   Put your photos in the SAME folder as this
+   HTML file.
+
+   Example:
+
+   index.html
+   photo1.jpeg
+   photo2.jpeg
+   photo3.jpeg
+
+   Then change the names below.
+*/
+
+const photos = [
+
+    {
+        src:"1.jpeg",
+        caption:"That smile though... 🥹💗"
+    },
+
+    {
+        src:"2.jpeg",
+        caption:"One of my favorite pictures ✨"
+    },
+
+    {
+        src:"3.jpeg",
+        caption:"Just casually being adorable 🧸"
+    },
+
+    {
+        src:"4.jpeg",
+        caption:"Okay... this one is special 💕"
+    },
+
+    {
+        src:"5.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },
+
+    {
+        src:"6.jpeg",
+        caption:"And yes, you look amazing here 💖"
+    },
+    {
+        src:"7.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"8.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"fgdg574.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"10.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"11.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"12.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"13.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"ooooo.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"15.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"16.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"qsat.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"18.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"19.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"20.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"ryt74.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"22.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"75474.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"4fshjk.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"ss.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"5445745.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"5458676675.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"satr.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"4jf.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"52.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"58.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"54.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    },    {
+        src:"55.jpeg",
+        caption:"A little moment worth remembering 🌷"
+    }
+];
+
+
+/* CREATE PHOTO GALLERY */
+
+const gallery = document.getElementById("gallery");
+
+photos.forEach(photo => {
+
+    const card = document.createElement("div");
+
+    card.className = "photo-card";
+
+    card.innerHTML = `
+        <img src="${photo.src}" alt="Special photo"
+        onerror="this.src='https://placehold.co/600x800/f8dce8/9c5575?text=Add+Your+Photo+💗'">
+
+        <div class="photo-overlay">
+            <span>${photo.caption}</span>
+        </div>
+    `;
+
+    gallery.appendChild(card);
+
+    card.addEventListener("click", () => openFullscreenPhoto(card.querySelector("img").src, photo.caption));
+
+});
+
+const revealButton = document.querySelector(".scroll-btn");
+const photosSection = document.getElementById("photos");
+
+revealButton.addEventListener("click", function(event){
+    event.preventDefault();
+    photosSection.classList.add("gallery-revealed");
+
+    document.querySelectorAll(".photo-card").forEach((card, index) => {
+        setTimeout(() => card.classList.add("show"), index * 120);
+    });
+
+    setTimeout(() => {
+        photosSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 180);
+});
+
+function openFullscreenPhoto(imageSrc, caption){
+    const overlay = document.getElementById("photo-fullscreen");
+    const img = document.getElementById("fullscreen-image");
+    const text = document.getElementById("fullscreen-caption");
+
+    img.src = imageSrc;
+    text.textContent = caption;
+    overlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeFullscreenPhoto(){
+    const overlay = document.getElementById("photo-fullscreen");
+    overlay.classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+const fullscreenOverlay = document.getElementById("photo-fullscreen");
+fullscreenOverlay.addEventListener("click", function(event){
+    if(event.target === this){
+        closeFullscreenPhoto();
+    }
+});
+
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape" && fullscreenOverlay.classList.contains("show")){
+        closeFullscreenPhoto();
+    }
+});
+
+/* SCROLL ANIMATION */
+
+const observer = new IntersectionObserver(
+
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
+            }
+
+        });
+
+    },
+
+    {
+        threshold:.15
+    }
+
+);
+
+document.querySelectorAll(".photo-card")
+.forEach(card => observer.observe(card));
+
+
+/* TYPEWRITER */
+
+const message =
+"Maybe I don't say it enough... but there is something about you that makes my day a little brighter. Your smile, your presence, the little things you do — somehow they all stay in my mind. 💗";
+
+let index = 0;
+
+function typeWriter(){
+
+    if(index < message.length){
+
+        document.getElementById("typewriter").innerHTML +=
+            message.charAt(index);
+
+        index++;
+
+        setTimeout(typeWriter,35);
+
+    }
+
+}
+
+setTimeout(typeWriter,700);
+
+
+/* ENVELOPE */
+
+function openLetter(){
+
+    document
+        .getElementById("envelope")
+        .classList.toggle("open");
+
+}
+
+
+/* SURPRISE */
+
+function showSurprise(){
+
+    document
+        .getElementById("popup")
+        .classList.add("show");
+
+    createHearts();
+
+}
+
+function closeSurprise(){
+
+    document
+        .getElementById("popup")
+        .classList.remove("show");
+
+}
+
+
+/* HEART EXPLOSION */
+
+function createHearts(){
+
+    const emojis = [
+        "💗","💕","💖","💘","❤️",
+        "💞","✨","🌸","🧸","💝"
+    ];
+
+    for(let i=0;i<35;i++){
+
+        const heart = document.createElement("div");
+
+        heart.innerHTML =
+            emojis[Math.floor(Math.random()*emojis.length)];
+
+        heart.style.position = "fixed";
+        heart.style.left = "50%";
+        heart.style.top = "50%";
+        heart.style.zIndex = "200";
+        heart.style.fontSize =
+            (15 + Math.random()*25) + "px";
+        heart.style.pointerEvents = "none";
+
+        document.body.appendChild(heart);
+
+        const angle =
+            Math.random()*Math.PI*2;
+
+        const distance =
+            150 + Math.random()*350;
+
+        const x =
+            Math.cos(angle)*distance;
+
+        const y =
+            Math.sin(angle)*distance;
+
+        heart.animate(
+
+            [
+                {
+                    transform:"translate(-50%,-50%) scale(.2)",
+                    opacity:1
+                },
+
+                {
+                    transform:
+                    `translate(calc(-50% + ${x}px),
+                    calc(-50% + ${y}px))
+                    scale(1.5)
+                    rotate(${Math.random()*360}deg)`,
+
+                    opacity:0
+                }
+            ],
+
+            {
+                duration:1200 + Math.random()*800,
+                easing:"cubic-bezier(.17,.67,.3,1.3)"
+            }
+
+        ).onfinish = () => heart.remove();
+
+    }
+
+}
+
+
+/* BACKGROUND MUSIC */
+
+const musicToggle = document.getElementById("music-toggle");
+let audioContext = null;
+let musicGainNode = null;
+let melodyTimer = null;
+
+function ensureAudioContext() {
+    if (!audioContext) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioCtx();
+        musicGainNode = audioContext.createGain();
+        musicGainNode.gain.value = 0.06;
+        musicGainNode.connect(audioContext.destination);
+    }
+
+    if (audioContext.state === "suspended") {
+        audioContext.resume();
+    }
+}
+
+function playSoftMelody() {
+    if (!audioContext || !musicGainNode) {
+        return;
+    }
+
+    const notes = [261.63, 329.63, 392.0, 329.63, 349.23, 440.0, 392.0, 329.63];
+    const startGap = 0.42;
+    const now = audioContext.currentTime;
+
+    notes.forEach((frequency, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        const startAt = now + index * startGap;
+
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(frequency, startAt);
+
+        gain.gain.setValueAtTime(0.0001, startAt);
+        gain.gain.exponentialRampToValueAtTime(0.08, startAt + 0.12);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startAt + 0.48);
+
+        oscillator.connect(gain);
+        gain.connect(musicGainNode);
+
+        oscillator.start(startAt);
+        oscillator.stop(startAt + 0.52);
+    });
+}
+
+function startMusic() {
+    ensureAudioContext();
+    if (!melodyTimer) {
+        playSoftMelody();
+        melodyTimer = setInterval(playSoftMelody, 2200);
+    }
+}
+
+function stopMusic() {
+    if (melodyTimer) {
+        clearInterval(melodyTimer);
+        melodyTimer = null;
+    }
+}
+
+function updateMusicButton(isPlaying) {
+    musicToggle.classList.toggle("playing", isPlaying);
+    const label = musicToggle.querySelector("span:last-child");
+    label.textContent = isPlaying ? "Music on" : "Play music";
+    musicToggle.setAttribute("aria-label", isPlaying ? "Pause background music" : "Play background music");
+}
+
+function attemptAutoplay() {
+    try {
+        startMusic();
+        updateMusicButton(true);
+    } catch (error) {
+        console.log("Autoplay is blocked by the browser. Use the button to start the music.", error);
+        updateMusicButton(false);
+    }
+}
+
+musicToggle.addEventListener("click", async () => {
+    if (melodyTimer) {
+        stopMusic();
+        updateMusicButton(false);
+        return;
+    }
+
+    try {
+        startMusic();
+        updateMusicButton(true);
+    } catch (error) {
+        console.log("Background music could not start.", error);
+    }
+});
+
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        attemptAutoplay();
+    }, 700);
+});
+
+/* CLOSE POPUP WHEN CLICKING OUTSIDE */
+
+document.getElementById("popup").addEventListener(
+    "click",
+    function(e){
+
+        if(e.target === this){
+            closeSurprise();
+        }
+
+    }
+);
+
+
+/* EXTRA FLOATING EMOJIS */
+
+setInterval(() => {
+
+    const emojis = ["💗","💕","✨","🌸","💖"];
+
+    const el = document.createElement("div");
+
+    el.innerHTML =
+        emojis[Math.floor(Math.random()*emojis.length)];
+
+    el.style.position = "fixed";
+    el.style.left = Math.random()*100 + "vw";
+    el.style.bottom = "-30px";
+    el.style.fontSize =
+        (15 + Math.random()*20) + "px";
+    el.style.zIndex = "1";
+    el.style.pointerEvents = "none";
+
+    document.body.appendChild(el);
+
+    el.animate(
+
+        [
+            {
+                transform:"translateY(0) rotate(0)",
+                opacity:0
+            },
+
+            {
+                transform:
+                    `translateY(-110vh)
+                     rotate(${Math.random()*360}deg)`,
+                opacity:.8
+            }
+        ],
+
+        {
+            duration:6000 + Math.random()*5000,
+            easing:"linear"
+        }
+
+    ).onfinish = () => el.remove();
+
+},1200);
+
+</script>
+
+</body>
+</html>
